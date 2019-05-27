@@ -1,3 +1,2 @@
 # PlatformGame
-ehh....
-pierwszy commit test
+Projekt zaliczeniowy Prog 2
