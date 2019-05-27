@@ -1,2 +1,3 @@
 # PlatformGame
-Projekt zaliczeniowy Prog 2
+Projekt zaliczeniowy Programowanie 2
+
