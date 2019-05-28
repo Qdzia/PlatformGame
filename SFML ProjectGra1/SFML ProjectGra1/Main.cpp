@@ -7,7 +7,7 @@ using namespace sf;
 
 int main()
 {
-	RenderWindow window(VideoMode(800, 600), "Example 03!", Style::Default);
+	RenderWindow window(VideoMode(800, 600), "Tutorials", Style::Default);
 	window.setFramerateLimit(60);
 
 	while (window.isOpen())
