@@ -11,8 +11,18 @@ void Game::Run()
 	RenderWindow window(VideoMode(800, 600), "Tutorials", Style::Default);
 	window.setFramerateLimit(60);
 
-	CircleShape shape(50.0f);
+	
 	RectangleShape player(Vector2f(50.0f, 50.0f));
+
+	
+
+	
+
+
+	bool ground = true;
+	bool jump = false;
+	float currentHight;
+
 
 	while (window.isOpen())
 	{
@@ -25,9 +35,11 @@ void Game::Run()
 			if (Event::KeyPressed && event.key.code == Keyboard::Escape)
 				window.close();
 		}
+
 		//Update
-		shape.move(0.1f, 0.5f);
-		player.setFillColor(Color::Black);
+		if (player.getPosition().y >= window.getSize().y - player.getSize().y)
+			ground = false;
+
 
 		if (Keyboard::isKeyPressed(Keyboard::D))
 			player.move(4.f, 0.f);
@@ -35,11 +47,26 @@ void Game::Run()
 		if (Keyboard::isKeyPressed(Keyboard::A))
 			player.move(-4.f, 0.f);
 
-		if (Keyboard::isKeyPressed(Keyboard::S))
-			player.move(0.f, 4.f);
 
-		if (Keyboard::isKeyPressed(Keyboard::W))
-			player.move(0.f, -4.f);
+		if (Keyboard::isKeyPressed(Keyboard::Space) && !ground) 
+		{
+			
+			jump = true;
+			currentHight = player.getPosition().y;
+		}
+			
+		//Sila grawitacji
+		if (ground)
+			player.move(0.f, gravityForce);
+
+		//Skok
+		if (jump && currentHight-100.0f < player.getPosition().y) {
+			
+			player.move(0.f, -gravityForce);
+		
+		}
+		else { jump = false; ground = true; }
+		
 
 		//Draw
 
@@ -47,7 +74,7 @@ void Game::Run()
 
 		//Draw everything
 		window.draw(player);
-		window.draw(shape);
+		
 		window.display();
 	}
 

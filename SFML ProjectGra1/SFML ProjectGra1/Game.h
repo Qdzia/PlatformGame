@@ -6,6 +6,8 @@ using namespace sf;
 #pragma once
 class Game
 {
+	float gravityForce = 3.0f;
+
 public:
 	void Run();
 
