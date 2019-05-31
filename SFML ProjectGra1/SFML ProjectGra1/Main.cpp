@@ -10,7 +10,9 @@ int main()
 	RenderWindow window(VideoMode(800, 600), "Tutorials", Style::Default);
 	window.setFramerateLimit(60);
 
-	while (window.isOpen())
+	CircleShape shape(50.0f);
+
+	while(window.isOpen())
 	{
 		Event event;
 		while (window.pollEvent(event))
@@ -19,11 +21,14 @@ int main()
 				window.close();
 		}
 		//Update
-
+		shape.move(0.1f, 0.5f);
+		shape.setFillColor(Color::Black);
 		//Draw
-		window.clear();
+		
+		window.clear(Color::Green);
 
 		//Draw everything
+		window.draw(shape);
 		window.display();
 	}
 
