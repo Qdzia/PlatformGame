@@ -9,7 +9,6 @@ using namespace sf;
 class GameObject
 {
 
-	bool isStatic = true;
 	bool isMovable = false;
 	RectangleShape object;
 

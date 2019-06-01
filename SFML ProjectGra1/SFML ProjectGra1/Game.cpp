@@ -44,10 +44,10 @@ void Game::Run()
 			ground = false;
 
 
-		if (Keyboard::isKeyPressed(Keyboard::D)&& 2!= platform1.Collision(player))
+		if (Keyboard::isKeyPressed(Keyboard::D)&& 3!= platform1.Collision(player))
 			player.move(4.f, 0.f);
 
-		if (Keyboard::isKeyPressed(Keyboard::A) && 2!= platform1.Collision(player))
+		if (Keyboard::isKeyPressed(Keyboard::A) && 3!= platform1.Collision(player))
 			player.move(-4.f, 0.f);
 
 
@@ -64,7 +64,8 @@ void Game::Run()
 		//Skok
 		if (jump && currentHight-100.0f < player.getPosition().y) {
 			
-			player.move(0.f, -gravityForce);
+			if(2== platform1.Collision(player)) { jump = false; ground = true; }
+			else player.move(0.f, -gravityForce);
 		
 		}
 		else { jump = false; ground = true; }

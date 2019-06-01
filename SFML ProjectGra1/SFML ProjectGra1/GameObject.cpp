@@ -1,5 +1,5 @@
 #include "GameObject.h"
-
+#include <iostream>
 using namespace sf;
 
 GameObject::GameObject()
@@ -33,11 +33,13 @@ Vector2f GameObject::GetPosition()
 
 int GameObject::Collision(RectangleShape collider)
 {
-	//colizja z boku lub od do³u -- 2, colizja od góry -- 1, brak collizji 0, ta 4.0f to wartoœæ grawitacji
+	//colizja od do³u -- 2, colizja od góry -- 1, jakakolwiek colizja -- 3, brak collizji 0, ta 4 to wartoœæ grawitacji
 
 	bool n = collider.getGlobalBounds().intersects(object.getGlobalBounds());
-	if (n&& collider.getPosition().y + collider.getSize().y -object.getPosition().y<4.0f) return 1;
-	else if (n) return 2;
+
+	if (n && collider.getPosition().y + 4 > object.getPosition().y + object.getSize().y)return 2;
+	else if (n && collider.getPosition().y + collider.getSize().y - object.getPosition().y < 4) return 1;
+	else if (n) return 3;
 	else return 0;
 }
 
