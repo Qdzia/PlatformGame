@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki źródłowe\GameObjects">
+      <UniqueIdentifier>{d2bdc6f9-3fc6-4b75-aa9c-b3f19ddcc8c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\GameObjects">
+      <UniqueIdentifier>{57ea65f0-57b6-4bde-85ee-33cb42bd97ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -24,6 +30,12 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Ladder.cpp">
+      <Filter>Pliki źródłowe\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Spikes.cpp">
+      <Filter>Pliki źródłowe\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -31,6 +43,12 @@
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Spikes.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ladder.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

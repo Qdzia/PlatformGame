@@ -34,13 +34,27 @@ Vector2f GameObject::GetPosition()
 int GameObject::Collision(RectangleShape collider)
 {
 	//colizja od do³u -- 2, colizja od góry -- 1, jakakolwiek colizja -- 3, brak collizji 0, ta 4 to wartoœæ grawitacji
+	if (!isTrigger)
+	{
+		bool n = collider.getGlobalBounds().intersects(object.getGlobalBounds());
 
-	bool n = collider.getGlobalBounds().intersects(object.getGlobalBounds());
+		if (n && collider.getPosition().y + 4 > object.getPosition().y + object.getSize().y)return 2;
+		else if (n && collider.getPosition().y + collider.getSize().y - object.getPosition().y < 4) return 1;
+		else if (n) return 3;
+		else return 0;
+	} 
+	
+	return 0;
+}
 
-	if (n && collider.getPosition().y + 4 > object.getPosition().y + object.getSize().y)return 2;
-	else if (n && collider.getPosition().y + collider.getSize().y - object.getPosition().y < 4) return 1;
-	else if (n) return 3;
-	else return 0;
+int GameObject::Trigger(RectangleShape collider)
+{
+	int m;
+	isTrigger = false;
+	m = Collision(collider);
+	isTrigger = true;
+
+	return m;
 }
 
 void GameObject::Visible(bool n)

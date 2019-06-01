@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "GameObject.h"
+#include "Spikes.h"
+#include "Ladder.h"
 using namespace sf;
 
 // TU jest moje pole do tesów korzystaj z pozosta³ych klas tam masz wszystko ³adnie opisane za playera u¿ywam RectangleShape
@@ -18,9 +20,11 @@ void Game::Run()
 
 	
 	RectangleShape player(Vector2f(50.0f, 50.0f));
+	RectangleShape* wskplay = &player;
 
-	GameObject platform1;
-	platform1.SetProperties(600.0f, 500.0f,400.0f,50.0f);
+	Spikes platform1;
+	
+	platform1.SetProperties(100.0f, 500.0f,50.0f,200.0f);
 
 	bool ground = true;
 	bool jump = false;
@@ -70,7 +74,9 @@ void Game::Run()
 		}
 		else { jump = false; ground = true; }
 		
-
+		//Test 
+		platform1.Effect(wskplay);
+		
 		//Draw
 
 		window.clear(Color::Green);

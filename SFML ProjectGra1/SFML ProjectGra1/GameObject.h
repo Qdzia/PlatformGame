@@ -8,19 +8,22 @@ using namespace sf;
 
 class GameObject
 {
+protected:
 
 	bool isMovable = false;
+	bool isTrigger = false;
 	RectangleShape object;
 
 public:
 	void SetProperties(float x, float y, float width, float hight);
 	Vector2f GetPosition();
 	int Collision(RectangleShape collider);
+	int Trigger(RectangleShape collider);
 	void Visible(bool n);
 	void Movable(bool n);
 	void Move(float x,float y);
 	void MoveAlgorithm();
-	void Effect();
+	virtual void Effect(RectangleShape* collider) = 0;
 	RectangleShape Draw();
 
 	GameObject();
