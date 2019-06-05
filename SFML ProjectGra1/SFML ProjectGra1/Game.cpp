@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Spikes.h"
 #include "Ladder.h"
+#include "Items.h"
 using namespace sf;
 
 // TU jest moje pole do tesów korzystaj z pozosta³ych klas tam masz wszystko ³adnie opisane za playera u¿ywam RectangleShape
@@ -22,9 +23,9 @@ void Game::Run()
 	RectangleShape player(Vector2f(50.0f, 50.0f));
 	RectangleShape* wskplay = &player;
 
-	Spikes platform1;
+	Ladder platform1;
 	
-	platform1.SetProperties(100.0f, 500.0f,50.0f,200.0f);
+	platform1.SetProperties(100.0f, 500.0f,50.0f,600.0f);
 
 	bool ground = true;
 	bool jump = false;
@@ -54,6 +55,12 @@ void Game::Run()
 		if (Keyboard::isKeyPressed(Keyboard::A) && 3!= platform1.Collision(player))
 			player.move(-4.f, 0.f);
 
+		if (Keyboard::isKeyPressed(Keyboard::D) && 3 != platform1.Collision(player))
+			platform1.CameraMove(4.f, 0.f);
+
+		if (Keyboard::isKeyPressed(Keyboard::A) && 3 != platform1.Collision(player))
+			platform1.CameraMove(-4.f, 0.f);
+
 
 		if (Keyboard::isKeyPressed(Keyboard::Space) && !ground) 
 		{
@@ -76,6 +83,7 @@ void Game::Run()
 		
 		//Test 
 		platform1.Effect(wskplay);
+		platform1.MoveAlgorithm(100.0f, 100.0f, 1.0f);
 		
 		//Draw
 

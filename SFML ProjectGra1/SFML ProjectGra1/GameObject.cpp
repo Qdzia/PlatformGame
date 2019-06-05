@@ -17,6 +17,15 @@ RectangleShape GameObject::Draw()
 	return object;
 }
 
+void GameObject::CameraMove(float x, float y)
+{
+	x += object.getPosition().x;
+	y += object.getPosition().y;
+	object.setPosition(x, y);
+	
+	
+}
+
 void GameObject::SetProperties(float x, float y,float width,float hight)
 {
 	// Tak tworzysz ka¿dy objekt
@@ -75,6 +84,16 @@ void GameObject::Move(float x, float y)
 {
 	if(isMovable)
 	object.move(x, y);
+}
+
+bool GameObject::MoveAlgorithm(float x, float y,float speed)
+{
+	bool m = object.getPosition().x == x;
+	bool n = object.getPosition().y == y;
+	if (!m) object.move(0.0f, -speed);
+	if (!n) object.move(speed, 0.0f);
+	if (m&&n) return true;
+	else return false;
 }
 
 

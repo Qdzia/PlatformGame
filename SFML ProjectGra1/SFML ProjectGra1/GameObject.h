@@ -22,9 +22,10 @@ public:
 	void Visible(bool n);
 	void Movable(bool n);
 	void Move(float x,float y);
-	void MoveAlgorithm();
+	bool MoveAlgorithm(float x, float y, float speed);
 	virtual void Effect(RectangleShape* collider) = 0;
 	RectangleShape Draw();
+	void CameraMove(float x,float y);
 
 	GameObject();
 	virtual ~GameObject();
