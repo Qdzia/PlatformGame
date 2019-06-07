@@ -6,7 +6,7 @@ class Ladder :
 	public GameObject
 {
 public:
-	void Effect(RectangleShape* collider);
+	void Effect(RectangleShape* collider, int num);
 	Ladder();
 	~Ladder();
 };

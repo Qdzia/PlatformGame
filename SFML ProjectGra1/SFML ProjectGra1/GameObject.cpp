@@ -1,5 +1,4 @@
 #include "GameObject.h"
-#include <iostream>
 using namespace sf;
 
 GameObject::GameObject()
@@ -11,7 +10,7 @@ GameObject::~GameObject()
 }
 
 
-RectangleShape GameObject::Draw()
+RectangleShape GameObject::Ref()
 {
 	//przekazuje referencje do obiektu
 	return object;
@@ -24,6 +23,11 @@ void GameObject::CameraMove(float x, float y)
 	object.setPosition(x, y);
 	
 	
+}
+
+void GameObject::Effect(RectangleShape * collider, int num)
+{
+
 }
 
 void GameObject::SetProperties(float x, float y,float width,float hight)

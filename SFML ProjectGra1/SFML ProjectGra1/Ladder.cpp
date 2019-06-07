@@ -2,7 +2,7 @@
 
 
 
-void Ladder::Effect(RectangleShape* collider)
+void Ladder::Effect(RectangleShape* collider, int num)
 {
 
 

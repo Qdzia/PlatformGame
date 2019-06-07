@@ -3,6 +3,8 @@
 #include <SFML/System.hpp>
 #include <iostream>
 
+
+
 #pragma once
 using namespace sf;
 
@@ -10,7 +12,7 @@ class GameObject
 {
 protected:
 
-	bool isMovable = false;
+	bool isMovable = true;
 	bool isTrigger = false;
 	RectangleShape object;
 
@@ -23,9 +25,9 @@ public:
 	void Movable(bool n);
 	void Move(float x,float y);
 	bool MoveAlgorithm(float x, float y, float speed);
-	virtual void Effect(RectangleShape* collider) = 0;
-	RectangleShape Draw();
+	RectangleShape Ref();
 	void CameraMove(float x,float y);
+	virtual void Effect(RectangleShape* collider, int num);
 
 	GameObject();
 	virtual ~GameObject();

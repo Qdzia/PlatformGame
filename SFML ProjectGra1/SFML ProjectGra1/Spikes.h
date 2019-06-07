@@ -9,7 +9,7 @@ class Spikes :
 
 public:
 	
-	void Effect(RectangleShape* collider);
+	void Effect(RectangleShape* collider, int num);
 	Spikes();
 	~Spikes();
 };

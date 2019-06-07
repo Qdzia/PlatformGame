@@ -1,19 +1,15 @@
 #include "Game.h"
 #include "GameObject.h"
-#include "Spikes.h"
-#include "Ladder.h"
-#include "Items.h"
+
 using namespace sf;
+using namespace std;
+
 
 // TU jest moje pole do tesów korzystaj z pozosta³ych klas tam masz wszystko ³adnie opisane za playera u¿ywam RectangleShape
 Game::Game()
 {
 }
-bool Collision(RectangleShape player, RectangleShape object)
-{
-	return !player.getGlobalBounds().intersects(object.getGlobalBounds());
 
-}
 void Game::Run()
 {
 	RenderWindow window(VideoMode(800, 600), "Tutorials", Style::Default);
@@ -23,14 +19,13 @@ void Game::Run()
 	RectangleShape player(Vector2f(50.0f, 50.0f));
 	RectangleShape* wskplay = &player;
 
-	Ladder platform1;
-	
-	platform1.SetProperties(100.0f, 500.0f,50.0f,600.0f);
+
 
 	bool ground = true;
 	bool jump = false;
 	float currentHight;
 
+	this->Initialize();
 
 	while (window.isOpen())
 	{
@@ -48,7 +43,7 @@ void Game::Run()
 		if (player.getPosition().y >= window.getSize().y - player.getSize().y)
 			ground = false;
 
-
+		/*
 		if (Keyboard::isKeyPressed(Keyboard::D)&& 3!= platform1.Collision(player))
 			player.move(4.f, 0.f);
 
@@ -80,26 +75,59 @@ void Game::Run()
 		
 		}
 		else { jump = false; ground = true; }
-		
-		//Test 
-		platform1.Effect(wskplay);
-		platform1.MoveAlgorithm(100.0f, 100.0f, 1.0f);
-		
+		*/
+
+		//Sila grawitacji
+		if (ground)
+			player.move(0.f, gravityForce);
+
+	
+		Objects[0]->Move(0.0f, 3.0f);
+			
+			
+
 		//Draw
 
 		window.clear(Color::Green);
 
 		//Draw everything
-		
-		window.draw(platform1.Draw());
 		window.draw(player);
+		window.draw(Objects[0]->Ref());
+		//window.draw(l1.Ref());
 		
-
 		window.display();
 	}
 
 }
 
+void Game::Initialize()
+{
+	Objects[0] = new Ladder();
+	Objects[0]->SetProperties(100.0f, 100.0f, 100.0f, 100.0f);
+
+}
+
+void Game::CameraUpdate()
+{
+	for (int i = 0; i < NumOfObj; i++)
+	{
+		Objects[i]->CameraMove(camX, camY);
+	}
+}
+
+void Game::Collisions(RectangleShape player)
+{
+	int n;
+
+	for (int i = 0; i < NumOfObj; i++)
+	{
+		n = Objects[i]->Collision(player);
+		if (n != 0) Objects[i]->Effect(&player, n);
+	}
+	
+}
+
 Game::~Game()
 {
+
 }

@@ -3,7 +3,7 @@
 using namespace sf;
 
 
-void Spikes::Effect(RectangleShape* collider)
+void Spikes::Effect(RectangleShape* collider, int num)
 {
 	if(Collision(*collider) == 1)
 	object.setFillColor(Color::Red);
