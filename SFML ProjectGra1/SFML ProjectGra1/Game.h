@@ -10,7 +10,7 @@ using namespace sf;
 class Game
 {
 	float gravityForce = 3.0f;
-	int NumOfObj = 2;
+	int NumOfObj = 5;
 	float camX =0.0f, camY=0.0f;
 
 public:
