@@ -82,8 +82,8 @@ void Game::Run()
 			player.move(0.f, gravityForce);
 
 	
-		Objects[0]->Move(0.0f, 3.0f);
-			
+		Collisions(wskplay);
+		
 			
 
 		//Draw
@@ -92,7 +92,9 @@ void Game::Run()
 
 		//Draw everything
 		window.draw(player);
-		window.draw(Objects[0]->Ref());
+		for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
+		
+		
 		//window.draw(l1.Ref());
 		
 		window.display();
@@ -102,8 +104,9 @@ void Game::Run()
 
 void Game::Initialize()
 {
-	Objects[0] = new Ladder();
-	Objects[0]->SetProperties(100.0f, 100.0f, 100.0f, 100.0f);
+	Objects[0] = new Ladder(100.0f, 100.0f, 100.0f, 100.0f);
+	Objects[1] = new Platform(0.0f, 500.0f, 500.0f, 50.0f);
+	
 
 }
 
@@ -115,14 +118,15 @@ void Game::CameraUpdate()
 	}
 }
 
-void Game::Collisions(RectangleShape player)
+void Game::Collisions(RectangleShape* player)
 {
 	int n;
-
+	
+	
 	for (int i = 0; i < NumOfObj; i++)
 	{
-		n = Objects[i]->Collision(player);
-		if (n != 0) Objects[i]->Effect(&player, n);
+		n = Objects[i]->Collision(*player);
+		if (n != 0) Objects[i]->Effect(player, n);
 	}
 	
 }

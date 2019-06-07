@@ -2,16 +2,22 @@
 
 
 
-void Platform::Effect(RectangleShape * collider)
+void Platform::Effect(RectangleShape * collider, int num)
 {
-	std::cout << "to tylko platforma\n";
+	if (num == 1) collider->move(0.0f, -3.0f);
+
+	
 }
 
-Platform::Platform()
+Platform::Platform(float x, float y, float width, float hight):GameObject(x,y,width,hight)
 {
+
 }
 
 
 Platform::~Platform()
 {
 }
+
+
+

@@ -29,7 +29,7 @@ public:
 	void CameraMove(float x,float y);
 	virtual void Effect(RectangleShape* collider, int num);
 
-	GameObject();
+	GameObject(float x, float y, float width, float hight);
 	virtual ~GameObject();
 };
 

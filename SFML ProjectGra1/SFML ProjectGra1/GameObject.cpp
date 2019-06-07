@@ -1,8 +1,11 @@
 #include "GameObject.h"
 using namespace sf;
 
-GameObject::GameObject()
+GameObject::GameObject(float x, float y, float width, float hight)
 {
+	object.setSize(Vector2f(width, hight));
+	object.setPosition(Vector2f(x, y));
+
 }
 
 GameObject::~GameObject()

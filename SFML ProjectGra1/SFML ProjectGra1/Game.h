@@ -1,6 +1,7 @@
 #include "Spikes.h"
 #include "Ladder.h"
 #include "Items.h"
+#include "Platform.h"
 #include <list> 
 #include <iterator> 
 
@@ -9,7 +10,7 @@ using namespace sf;
 class Game
 {
 	float gravityForce = 3.0f;
-	int NumOfObj = 10;
+	int NumOfObj = 2;
 	float camX =0.0f, camY=0.0f;
 
 public:
@@ -18,7 +19,7 @@ public:
 	void Run();
 	void Initialize();
 	void CameraUpdate();
-	void Collisions(RectangleShape player);
+	void Collisions(RectangleShape* player);
 
 	Game();
 	virtual ~Game();

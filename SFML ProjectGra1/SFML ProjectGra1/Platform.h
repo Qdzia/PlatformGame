@@ -5,8 +5,10 @@ class Platform :
 {
 public:
 
-	void Effect(RectangleShape* collider);
-	Platform();
+	void Effect(RectangleShape * collider, int num);
+	Platform(float x, float y, float width, float hight);
 	~Platform();
 };
+
+
 

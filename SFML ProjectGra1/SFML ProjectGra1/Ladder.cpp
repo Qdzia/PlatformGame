@@ -13,7 +13,7 @@ void Ladder::Effect(RectangleShape* collider, int num)
 	}
 }
 
-Ladder::Ladder()
+Ladder::Ladder(float x, float y, float width, float hight) :GameObject(x, y, width, hight)
 {
 	isTrigger = true;
 }

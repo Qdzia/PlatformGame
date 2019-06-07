@@ -10,7 +10,7 @@ class Spikes :
 public:
 	
 	void Effect(RectangleShape* collider, int num);
-	Spikes();
+	Spikes(float x, float y, float width, float hight);
 	~Spikes();
 };
 

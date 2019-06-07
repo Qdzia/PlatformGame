@@ -11,7 +11,7 @@ void Spikes::Effect(RectangleShape* collider, int num)
 	//narazie tylko siê podœwietla mo¿na dodaæ ze zabija albo hp tracisz czy coœ
 }
 
-Spikes::Spikes()
+Spikes::Spikes(float x, float y, float width, float hight) :GameObject(x, y, width, hight)
 {
 }
 
