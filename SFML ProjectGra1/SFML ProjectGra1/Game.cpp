@@ -90,6 +90,7 @@ void Game::Run()
 		Collisions(wskplay);
 		CameraUpdate();
 		camX = 0.f;
+		camY = 0.f;
 
 		//Draw
 

@@ -19,6 +19,9 @@
     <Filter Include="Pliki nagłówkowe\GameObjects">
       <UniqueIdentifier>{57ea65f0-57b6-4bde-85ee-33cb42bd97ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Characters">
+      <UniqueIdentifier>{e39ee4d1-4b88-456e-8689-e290326a49d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -42,6 +45,18 @@
     <ClCompile Include="Platform.cpp">
       <Filter>Pliki źródłowe\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Pliki źródłowe\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaTime.cpp">
+      <Filter>Pliki źródłowe\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Pliki źródłowe\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Pliki źródłowe\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -61,6 +76,18 @@
     </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaTime.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
