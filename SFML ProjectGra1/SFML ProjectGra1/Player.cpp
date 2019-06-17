@@ -1,5 +1,6 @@
 #include "Player.h"
-class DeltaTime;
+
+
 
 
 
@@ -12,53 +13,60 @@ Player::~Player()
 {
 }
 
-void Player::move(float x, Player & p, Enemy &e)
+void Player::move()
 {
-	//Player
-	
-	if (Keyboard::isKeyPressed(Keyboard::A))
-		player.move(-10.f*x, 0.f);
-	else if (Keyboard::isKeyPressed(Keyboard::D))
-		player.move(10.f*x, 0.f);
-	
 }
+
+//void Player::move(float x, Player & p, Enemy &e)
+//{
+//	//Player
+//	
+//	if (Keyboard::isKeyPressed(Keyboard::A))
+//		player.move(-10.f*x, 0.f);
+//	else if (Keyboard::isKeyPressed(Keyboard::D))
+//		player.move(10.f*x, 0.f);
+//	
+//}
 /////////////////
 void Player::jump(float x)
 {
 	speedValue -= gravityAcceleration * x;
 	player.move(0, -speedValue);
 }
+void Player::shot()
+{
+}
 ////////////////////////
 
-void Player::shot(Bullet &b1,Player &p,RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)
-{
-	b1.playerCenter = Vector2f(p.player.getPosition().x + p.player.getGlobalBounds().width, p.player.getPosition().y + p.player.getGlobalBounds().height/2);
-
-
-	//PROJECTILES
-
-
-	if (b1.ShootTimer < 80)
-		b1.ShootTimer++;
-
-	if (Mouse::isButtonPressed(Mouse::Left) && b1.ShootTimer >= 80) //Shoot
-	{
-		b1.projectile.setPosition(b1.playerCenter);
-		projectiles.push_back(CircleShape(b1.projectile));
-
-		b1.ShootTimer = 0;
-	}
-
-	for (size_t i = 0; i < projectiles.size(); i++)
-	{
-		projectiles[i].move(1.f, 0.f);
-
-		if (projectiles[i].getPosition().x >= w.getSize().x)
-			projectiles.erase(projectiles.begin() + i);
-
-	}
-	
-	}
+//void Player::shot(Bullet &b1,Player &p,RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)
+//{
+//	b1.playerCenter = Vector2f(p.player.getPosition().x + p.player.getGlobalBounds().width, p.player.getPosition().y + p.player.getGlobalBounds().height/2);
+//
+//
+//	//PROJECTILES
+//
+//
+//	if (b1.ShootTimer < 80)
+//		b1.ShootTimer++;
+//
+//	if (Mouse::isButtonPressed(Mouse::Left) && b1.ShootTimer >= 80) //Shoot
+//	{
+//		b1.projectile.setPosition(b1.playerCenter);
+//		projectiles.push_back(CircleShape(b1.projectile));
+//
+//		b1.ShootTimer = 0;
+//	}
+//
+//	for (size_t i = 0; i < projectiles.size(); i++)
+//	{
+//		projectiles[i].move(1.f, 0.f);
+//
+//		if (projectiles[i].getPosition().x >= w.getSize().x)
+//			projectiles.erase(projectiles.begin() + i);
+//
+//	}
+//	
+//	}
 	
 
 void Player::setAtributes()
@@ -67,7 +75,7 @@ void Player::setAtributes()
 		throw "Could not load cat.png";
 	player.setTexture(playTex);
 	player.setScale(Vector2f(0.25f, 0.25f));
-	player.setPosition(Vector2f(0, 0));
+	player.setPosition(Vector2f(520, 520));
 	hpBar.setFillColor(Color::Red);
 }
 
@@ -99,6 +107,22 @@ void Player::checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &
 			p.hp--;
 			cout << p.hp << endl;
 			break; ///ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
+		}
+	}
+}
+void Player::ifJump(DeltaTime & y, bool & whilejump)
+{
+	
+	if (whilejump)
+	{
+		/*this->jump(y.dtxmulti());*/
+		this->jump(1.f);
+		std::cout << this->player.getPosition().y << endl;
+		if (this->player.getPosition().y > 500)
+		{
+			this->player.setPosition(this->player.getPosition().x, 500);
+			whilejump = false;
+			this->accelerationValue = 0;
 		}
 	}
 }

@@ -1,16 +1,3 @@
-﻿  Bullet.cpp
-d:\documents\code\gitrepository\platformgame\sfml projectgra1\sfml projectgra1\player.h(20): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Game.cpp
-d:\documents\code\gitrepository\platformgame\sfml projectgra1\sfml projectgra1\game.cpp(27): warning C4101: 'currentHight': unreferenced local variable
-  GameObject.cpp
-  Items.cpp
-  Ladder.cpp
-  Platform.cpp
-  Player.cpp
-d:\documents\code\gitrepository\platformgame\sfml projectgra1\sfml projectgra1\player.h(20): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Spikes.cpp
-  Generating Code...
-  LINK : D:\Documents\Code\GitRepository\PlatformGame\SFML ProjectGra1\x64\Debug\SFML ProjectGra1.exe not found or not built by the last incremental link; performing full link
-Entity.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'Entity.obj' or at 'D:\Documents\Code\GitRepository\PlatformGame\SFML ProjectGra1\x64\Debug\vc141.pdb'; linking object as if no debug info
-DeltaTime.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'DeltaTime.obj' or at 'D:\Documents\Code\GitRepository\PlatformGame\SFML ProjectGra1\x64\Debug\vc141.pdb'; linking object as if no debug info
+﻿  Game.cpp
+d:\documents\code\gitrepository\platformgame\sfml projectgra1\sfml projectgra1\player.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
   SFML ProjectGra1.vcxproj -> D:\Documents\Code\GitRepository\PlatformGame\SFML ProjectGra1\x64\Debug\SFML ProjectGra1.exe

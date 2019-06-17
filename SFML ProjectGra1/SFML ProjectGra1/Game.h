@@ -2,8 +2,10 @@
 #include "Ladder.h"
 #include "Items.h"
 #include "Platform.h"
-#include <list> 
-#include <iterator> 
+#include "Entity.h"
+#include "Player.h"
+#include "Bullet.h"
+#include "Enemy.h"
 
 using namespace sf;
 #pragma once

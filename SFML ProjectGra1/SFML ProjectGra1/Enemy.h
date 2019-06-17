@@ -12,9 +12,11 @@ public:
 	bool shotRand = false;
 	Texture enemyTex;
 	Sprite enemy;
-	void move(float x, Player & p, Enemy &e);
+	void move();
+	//void move(float x, Player & p, Enemy &e);
 	void jump(float x);
-	void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles,Enemy &e1, vector<CircleShape>& enemyprojectiles);
+	void shot();
+	//void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
 	void setAtributes();
 	
 };

@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "DeltaTime.h"
+
 using namespace sf;
 
 class Player :
@@ -24,11 +26,13 @@ public:
 	//////////////////////////////////////
 	Player();
 	virtual ~Player();
-	void move(float x, Player & p, Enemy &e);
+	void move();
+	//void move(float x, Player & p, Enemy &e);
 	void jump(float x);
-	void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
+	void shot();
+	//void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
 	void setAtributes();
 	void checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &p, vector<CircleShape> &enemyprojectiles);
-	
+	void ifJump(DeltaTime &y, bool & whilejump);
 };
 
