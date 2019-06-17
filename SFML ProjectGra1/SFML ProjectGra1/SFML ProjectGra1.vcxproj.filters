@@ -22,15 +22,15 @@
     <Filter Include="Pliki źródłowe\Characters">
       <UniqueIdentifier>{e39ee4d1-4b88-456e-8689-e290326a49d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Charakters">
+      <UniqueIdentifier>{50c232a8-23d2-449e-9aaa-bb59d9715f7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Ladder.cpp">
@@ -57,12 +57,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Pliki źródłowe\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Pliki źródłowe\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Spikes.h">
@@ -77,17 +77,20 @@
     <ClInclude Include="Platform.h">
       <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Charakters</Filter>
     </ClInclude>
     <ClInclude Include="DeltaTime.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Charakters</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Charakters</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Pliki nagłówkowe\Charakters</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Pliki nagłówkowe\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

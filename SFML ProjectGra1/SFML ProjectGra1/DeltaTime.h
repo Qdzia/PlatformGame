@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 using namespace sf;
-
+#pragma once
 
 class DeltaTime
 {

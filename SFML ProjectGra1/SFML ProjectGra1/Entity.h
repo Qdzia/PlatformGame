@@ -14,13 +14,15 @@ class Entity
 public:
 	friend class Bullet;
 	friend class Player;
-	int hp;
+	friend class Enemy;
+	int hp=10;
 	Entity();
 	virtual ~Entity();
-	virtual void move(float x)=0;
+	virtual void move(float x, Player & p, Enemy &e)=0;
 	virtual void jump(float x)=0;
-	virtual void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles)=0;
+	virtual void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)=0;
 	virtual void setAtributes() = 0;
+	//virtual void checkCollison(vector<CircleShape> &projectiles, Enemy &e1)=0;
 	
 };
 
