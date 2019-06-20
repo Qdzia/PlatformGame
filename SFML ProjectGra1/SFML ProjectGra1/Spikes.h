@@ -10,7 +10,7 @@ class Spikes :
 public:
 	
 	void Effect(Entity* collider, int num);
-	Spikes(float x, float y, float width, float hight);
+	Spikes(float x, float y);
 	~Spikes();
 };
 

@@ -25,5 +25,8 @@ public:
 	//void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
 	void checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &p, vector<CircleShape> &enemyprojectiles);
 	void ifJump();
+
+
+
 };
 

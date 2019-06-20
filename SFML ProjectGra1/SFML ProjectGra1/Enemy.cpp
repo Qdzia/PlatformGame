@@ -39,6 +39,19 @@ void Enemy::shot()
 {
 }
 
+Sprite Enemy::Ref()
+{
+	return sprite;
+}
+
+void Enemy::CameraMove(float x, float y)
+{
+	x += sprite.getPosition().x;
+	y += sprite.getPosition().y;
+	sprite.setPosition(x, y);
+
+}
+
 //void Enemy::shot(Bullet & b1, Player & p, RenderWindow & w, vector<CircleShape>& projectiles,Enemy &e1, vector<CircleShape>& enemyprojectiles)
 //{
 //

@@ -42,6 +42,6 @@ public:
 	virtual void shot()=0;
 	//virtual void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles) = 0;
 	//virtual void checkCollison(vector<CircleShape> &projectiles, Enemy &e1)=0;
-	
+
 };
 

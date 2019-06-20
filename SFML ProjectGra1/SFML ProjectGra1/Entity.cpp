@@ -5,11 +5,15 @@
 
 Entity::Entity()
 {
+	
 }
 
 Entity::~Entity()
 {
 }
+
+
+
 
 
 

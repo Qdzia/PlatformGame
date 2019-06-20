@@ -6,14 +6,22 @@ void Ladder::Effect(Entity* collider, int num)
 {
 
 
-	if (num == 3 && Keyboard::isKeyPressed(Keyboard::W))
+	if (num > 0 && Keyboard::isKeyPressed(Keyboard::W))
 	{
-		collider->sprite.move(0.0f, -5.0f);
+		void moveSprite(float x, float y);
+		
 	}
 }
 
-Ladder::Ladder(float x, float y, float width, float hight) :GameObject(x, y, width, hight)
+Ladder::Ladder(float x, float y) :GameObject(x, y)
 {
+	if (!Tex.loadFromFile("Textures/ladder.png"))
+		throw "Could not load cat.png";
+	sprite.setTexture(Tex);
+	sprite.setScale(Vector2f(0.2f, 0.2f));
+
+	width = sprite.getTexture()->getSize().x * sprite.getScale().x;
+	hight = sprite.getTexture()->getSize().y * sprite.getScale().y;
 	
 }
 

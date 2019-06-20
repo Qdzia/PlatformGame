@@ -7,7 +7,7 @@ class Ladder :
 {
 public:
 	void Effect(Entity* collider, int num);
-	Ladder(float x, float y, float width, float hight);
+	Ladder(float x, float y);
 	~Ladder();
 };
 

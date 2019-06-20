@@ -112,6 +112,10 @@ void Player::ifJump()
 
 }
 
+
+
+
+
 /*#include "Player.h"
 class DeltaTime;
 

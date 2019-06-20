@@ -16,6 +16,7 @@ public:
 	void shot();
 	//void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
 
-	
+	Sprite Ref();
+	void CameraMove(float x, float y);
 };
 

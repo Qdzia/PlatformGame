@@ -17,6 +17,7 @@ class Game
 
 public:
 	GameObject* Objects[10];
+	Enemy* Enemys[1];
 	
 	void Run();
 	void Initialize();

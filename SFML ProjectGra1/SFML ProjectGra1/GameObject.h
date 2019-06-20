@@ -10,20 +10,22 @@ using namespace sf;
 
 class GameObject
 {
-protected:
-
-	bool isMovable = true;
-	RectangleShape object;
 
 public:
 
-	GameObject(float x, float y, float width, float hight);
+	float width;
+	float hight;
+
+	Texture Tex;
+	Sprite sprite;
+
+	GameObject(float x, float y);
 	virtual ~GameObject();
 
 
 	int Collision(Sprite collider, float gravity, float width, float hight);
 	void Move(float x,float y);
-	RectangleShape Ref();
+	Sprite Ref();
 	void CameraMove(float x, float y);
 	virtual void Effect(Entity* collider, int num);
 

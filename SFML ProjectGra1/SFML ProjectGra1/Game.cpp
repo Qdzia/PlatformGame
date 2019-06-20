@@ -8,6 +8,7 @@ using namespace std;
 // TU jest moje pole do tesów korzystaj z pozosta³ych klas tam masz wszystko ³adnie opisane za playera u¿ywam RectangleShape
 Game::Game()
 {
+	
 }
 
 void Game::Run()
@@ -15,11 +16,13 @@ void Game::Run()
 	RenderWindow window(VideoMode(800, 600), "Tutorials", Style::Default);
 	window.setFramerateLimit(60);
 
-	Player p1(100.f,50.f);
+	Player p1(250.f,50.f);
 	
+	vector<CircleShape> projectiles;
+	vector<CircleShape> enemyprojectiles;
+	Bullet b1;
 
 	
-
 
 	this->Initialize();
 
@@ -46,16 +49,9 @@ void Game::Run()
  
 		}
 
-		//Update
-
-		
-		
-		
-		/*std::cout << whileJump << endl;*/
-
 		
 		CameraUpdate(&p1);
-		
+
 
 		p1.ifJump();
 		
@@ -67,6 +63,7 @@ void Game::Run()
 		for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
 		
 		window.draw(p1.sprite);
+		window.draw(Enemys[0]->Ref());
 		window.display();
 	}
 
@@ -74,11 +71,13 @@ void Game::Run()
 
 void Game::Initialize()
 {
-	Objects[0] = new Ladder(2000.0f, 100.0f, 10.0f,400.0f);
-	Objects[1] = new Platform(0.0f, 200.0f, 500.0f, 50.0f);
-	Objects[2] = new Platform(500.0f, 400.0f, 500.0f, 50.0f);
-	Objects[3] = new Platform(1300.0f, 300.0f, 500.0f, 50.0f);
-	Objects[4] = new Spikes(1000.0f, 500.0f, 500.0f, 30.0f);
+	Objects[0] = new Ladder(1500.0f, 100.0f);
+	Objects[1] = new Platform(0.0f, 200.0f);
+	Objects[2] = new Platform(500.0f, 400.0f);
+	Objects[3] = new Platform(1100.0f, 300.0f);
+	Objects[4] = new Spikes(1000.0f, 500.0f);
+
+	Enemys[0] = new Enemy(550.f, 330.f);
 }
 
 void Game::CameraUpdate(Player* p1)
@@ -87,6 +86,8 @@ void Game::CameraUpdate(Player* p1)
 	if (Keyboard::isKeyPressed(Keyboard::A) && p1->camA) { camX += 4.f; }
 	
 	for (int i = 0; i < NumOfObj; i++) { Objects[i]->CameraMove(camX, camY); }
+
+	Enemys[0]->CameraMove(camX, camY);
 
 	camX = 0.f;
 	camY = 0.f;
@@ -100,9 +101,9 @@ void Game::Collisions(Player* collider)
 	
 	for (int i = 0; i < NumOfObj; i++)
 	{
+		
 		n = Objects[i]->Collision(collider->sprite, collider->speedValue, collider->width,collider->hight);
-	
-		if(i==1)std::cout << n << endl;
+		//if (n == 1)std::cout << n <<"  "<<i<< endl;
 		Objects[i]->Effect(collider, n);
 	}
 	

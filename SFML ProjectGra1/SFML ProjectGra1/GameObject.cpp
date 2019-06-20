@@ -1,29 +1,26 @@
 #include "GameObject.h"
 using namespace sf;
 
-GameObject::GameObject(float x, float y, float width, float hight)
+GameObject::GameObject(float x, float y)
 {
-	object.setSize(Vector2f(width, hight));
-	object.setPosition(Vector2f(x, y));
-
+	sprite.setPosition(Vector2f(x, y));
 }
 
 GameObject::~GameObject()
 {
 }
 
-
-RectangleShape GameObject::Ref()
+Sprite GameObject::Ref()
 {
 	//przekazuje referencje do obiektu
-	return object;
+	return sprite;
 }
 
 void GameObject::CameraMove(float x, float y)
 {
-	x += object.getPosition().x;
-	y += object.getPosition().y;
-	object.setPosition(x, y);
+	x += sprite.getPosition().x;
+	y += sprite.getPosition().y;
+	sprite.setPosition(x, y);
 	
 	
 }
@@ -35,14 +32,12 @@ void GameObject::Effect(Entity* collider, int num)
 
 int GameObject::Collision(Sprite collider, float gravity, float width,float hight)
 {
-	//colizja od do³u -- 2, colizja od góry -- 1, jakakolwiek colizja -- 3, brak collizji 0, ta 4 to wartoœæ grawitacji
-	
-	
-		bool n = collider.getGlobalBounds().intersects(object.getGlobalBounds());
-		bool vUp = collider.getPosition().y < object.getPosition().y;
-		bool vDown = collider.getPosition().y + gravity > object.getPosition().y + object.getSize().y;
-		bool hLeft = collider.getPosition().x + width - gravity < object.getPosition().x;
-		bool hRight = collider.getPosition().x + gravity > object.getPosition().x + object.getSize().x;
+
+		bool n = collider.getGlobalBounds().intersects(sprite.getGlobalBounds());
+		bool vUp = collider.getPosition().y < sprite.getPosition().y;
+		bool vDown = collider.getPosition().y + gravity > sprite.getPosition().y + this->hight;
+		bool hLeft = collider.getPosition().x + width - gravity < sprite.getPosition().x;
+		bool hRight = collider.getPosition().x + gravity > sprite.getPosition().x + this->width;
 
 		if (hLeft && n) return 3;
 		if (hRight && n) return 4;
@@ -69,16 +64,15 @@ int GameObject::Collision(Sprite collider, float gravity, float width,float high
 
 void GameObject::Move(float x, float y)
 {
-	if(isMovable)
-	object.move(x, y);
+	sprite.move(x, y);
 }
 
 bool GameObject::MoveAlgorithm(float x, float y,float speed)
 {
-	bool m = object.getPosition().x == x;
-	bool n = object.getPosition().y == y;
-	if (!m) object.move(0.0f, -speed);
-	if (!n) object.move(speed, 0.0f);
+	bool m = sprite.getPosition().x == x;
+	bool n = sprite.getPosition().y == y;
+	if (!m) sprite.move(0.0f, -speed);
+	if (!n) sprite.move(speed, 0.0f);
 	if (m&&n) return true;
 	else return false;
 }
