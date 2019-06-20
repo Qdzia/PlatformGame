@@ -1,14 +1,2 @@
-﻿  Bullet.cpp
-  DeltaTime.cpp
-  Enemy.cpp
-  Entity.cpp
-  Game.cpp
-  GameObject.cpp
-  Items.cpp
-  Ladder.cpp
-  Platform.cpp
-  Player.cpp
-  Spikes.cpp
-  main.cpp
-  Generating Code...
+﻿  Game.cpp
   SFML ProjectGra1.vcxproj -> D:\Documents\Code\GitRepository\PlatformGame\SFML ProjectGra1\x64\Debug\SFML ProjectGra1.exe

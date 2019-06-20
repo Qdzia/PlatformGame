@@ -13,10 +13,11 @@ class Game
 {
 	float gravityForce = 3.0f;
 	int NumOfObj = 5;
+	int NumOfEnemy = 1;
 	float camX =0.0f, camY=0.0f;
 
 public:
-	GameObject* Objects[10];
+	GameObject* Objects[5];
 	Enemy* Enemys[1];
 	
 	void Run();

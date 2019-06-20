@@ -61,9 +61,9 @@ void Game::Run()
 		//Draw everything
 
 		for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
-		
+		for (int i = 0; i < NumOfEnemy; i++) window.draw(Enemys[i]->Ref());
+
 		window.draw(p1.sprite);
-		window.draw(Enemys[0]->Ref());
 		window.display();
 	}
 
@@ -86,8 +86,8 @@ void Game::CameraUpdate(Player* p1)
 	if (Keyboard::isKeyPressed(Keyboard::A) && p1->camA) { camX += 4.f; }
 	
 	for (int i = 0; i < NumOfObj; i++) { Objects[i]->CameraMove(camX, camY); }
-
-	Enemys[0]->CameraMove(camX, camY);
+	for (int i = 0; i < NumOfEnemy; i++) { Enemys[i]->CameraMove(camX, camY); }
+	
 
 	camX = 0.f;
 	camY = 0.f;
