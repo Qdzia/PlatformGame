@@ -20,8 +20,8 @@ public:
 	
 	void Run();
 	void Initialize();
-	void CameraUpdate();
-	void Collisions(RectangleShape* player);
+	void CameraUpdate(Player* collider);
+	void Collisions(Player* collider);
 
 	Game();
 	virtual ~Game();

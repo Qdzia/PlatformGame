@@ -28,7 +28,7 @@ void GameObject::CameraMove(float x, float y)
 	
 }
 
-void GameObject::Effect(RectangleShape * collider, int num)
+void GameObject::Effect(Entity* collider, int num)
 {
 
 }
@@ -47,30 +47,35 @@ Vector2f GameObject::GetPosition()
 	return object.getPosition();
 }
 
-int GameObject::Collision(RectangleShape collider)
+int GameObject::Collision(Sprite collider, float gravity, float width,float hight)
 {
 	//colizja od do³u -- 2, colizja od góry -- 1, jakakolwiek colizja -- 3, brak collizji 0, ta 4 to wartoœæ grawitacji
-	if (!isTrigger)
-	{
-		bool n = collider.getGlobalBounds().intersects(object.getGlobalBounds());
-
-		if (n && collider.getPosition().y + 4 > object.getPosition().y + object.getSize().y)return 2;
-		else if (n && collider.getPosition().y + collider.getSize().y - object.getPosition().y < 4) return 1;
-		else if (n) return 3;
-		else return 0;
-	} 
 	
-	return 0;
-}
+	
+		bool n = collider.getGlobalBounds().intersects(object.getGlobalBounds());
+		bool vUp = collider.getPosition().y < object.getPosition().y;
+		bool vDown = collider.getPosition().y + gravity > object.getPosition().y + object.getSize().y;
+		bool hLeft = collider.getPosition().x + width - gravity < object.getPosition().x;
+		bool hRight = collider.getPosition().x + gravity > object.getPosition().x + object.getSize().x;
 
-int GameObject::Trigger(RectangleShape collider)
-{
-	int m;
-	isTrigger = false;
-	m = Collision(collider);
-	isTrigger = true;
+		if (vUp && n) return 1;
+		if (vDown && n) return 2;
+		if (hLeft && n) return 3;
+		if (hRight && n) return 4;
+		if (n) return 5;
 
-	return m;
+		return 0;
+		
+		/*float width = collider.getTexture()->getSize().x * collider.getScale().x;
+		float hight = collider.getTexture()->getSize().y * collider.getScale().y;
+
+		if (n && collider.getPosition().y + gravity > object.getPosition().y + object.getSize().y)return 2;
+		else if (n && collider.getPosition().y + hight - object.getPosition().y < gravity) return 1;
+		else if (n) return 3;
+		else return 0;*/
+
+		//if (n && collider.getPosition().y + hight - object.getPosition().y < gravity) return 1;
+
 }
 
 void GameObject::Visible(bool n)

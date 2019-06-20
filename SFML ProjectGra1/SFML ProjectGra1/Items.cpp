@@ -2,7 +2,7 @@
 
 
 
-void Items::Effect(RectangleShape * collider, int num)
+void Items::Effect(Entity* collider, int num)
 {
 
 }

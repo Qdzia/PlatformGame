@@ -16,10 +16,10 @@ void Game::Run()
 	window.setFramerateLimit(60);
 
 	DeltaTime d1;
-	Player p1;
-	p1.setAtributes();
+	Player p1(0.f,50.f);
+	
 
-	bool whileJump = false;
+	
 
 
 	this->Initialize();
@@ -27,6 +27,9 @@ void Game::Run()
 	while (window.isOpen())
 	{
 		Event event;
+
+		Collisions(&p1);
+
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
@@ -34,23 +37,28 @@ void Game::Run()
 
 			if (Event::KeyPressed && event.key.code == Keyboard::Escape)
 				window.close();
-
-			///////////////////////////////////////////////Warunek na skok/////////////////////////////
-			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space && whileJump == false)
-			{
-				p1.speedValue = p1.jumpF / p1.mass;
-				whileJump = true;
+			
+			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space && p1.gravityForce == false)
+			{		
+				p1.whileJump = true;
+				p1.gravityForce = true;
+				
 			}
+ 
 		}
 
 		//Update
 
 		
-		p1.ifJump(d1, whileJump);
+		
+		
 		/*std::cout << whileJump << endl;*/
 
-		//Collisions(wskplay);
-		CameraUpdate();
+		
+		CameraUpdate(&p1);
+		
+
+		p1.ifJump(d1);
 		
 		//Draw
 		window.clear(Color::Green);
@@ -59,7 +67,7 @@ void Game::Run()
 
 		for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
 		
-		window.draw(p1.player);
+		window.draw(p1.sprite);
 		window.display();
 	}
 
@@ -67,32 +75,36 @@ void Game::Run()
 
 void Game::Initialize()
 {
-	Objects[0] = new Ladder(410.0f, 100.0f, 10.0f,400.0f);
-	Objects[1] = new Platform(0.0f, 500.0f, 500.0f, 50.0f);
+	Objects[0] = new Ladder(2000.0f, 100.0f, 10.0f,400.0f);
+	Objects[1] = new Platform(0.0f, 200.0f, 500.0f, 50.0f);
 	Objects[2] = new Platform(500.0f, 400.0f, 500.0f, 50.0f);
-	Objects[3] = new Platform(1300.0f, 200.0f, 500.0f, 50.0f);
+	Objects[3] = new Platform(1300.0f, 300.0f, 500.0f, 50.0f);
 	Objects[4] = new Spikes(1000.0f, 500.0f, 500.0f, 30.0f);
 }
 
-void Game::CameraUpdate()
+void Game::CameraUpdate(Player* p1)
 {
-	if (Keyboard::isKeyPressed(Keyboard::D)) { camX += -4.f; }
-	if (Keyboard::isKeyPressed(Keyboard::A)) { camX += 4.f; }
+	if (Keyboard::isKeyPressed(Keyboard::D) && p1->camD) { camX += -4.f; }
+	if (Keyboard::isKeyPressed(Keyboard::A) && p1->camA) { camX += 4.f; }
 	
 	for (int i = 0; i < NumOfObj; i++) { Objects[i]->CameraMove(camX, camY); }
 
 	camX = 0.f;
 	camY = 0.f;
+	p1->camD = true;
+	p1->camA = true;
 }
 
-void Game::Collisions(RectangleShape* player)
+void Game::Collisions(Player* collider)
 {
 	int n;
-
+	
 	for (int i = 0; i < NumOfObj; i++)
 	{
-		n = Objects[i]->Collision(*player);
-		Objects[i]->Effect(player, n);
+		n = Objects[i]->Collision(collider->sprite, collider->speedValue, collider->width,collider->hight);
+	
+		if(i==1)std::cout << n << endl;
+		Objects[i]->Effect(collider, n);
 	}
 	
 }

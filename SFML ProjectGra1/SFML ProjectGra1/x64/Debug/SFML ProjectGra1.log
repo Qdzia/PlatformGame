@@ -1,3 +1,14 @@
-﻿  Game.cpp
-d:\documents\code\gitrepository\platformgame\sfml projectgra1\sfml projectgra1\player.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Bullet.cpp
+  DeltaTime.cpp
+  Enemy.cpp
+  Entity.cpp
+  Game.cpp
+  GameObject.cpp
+  Items.cpp
+  Ladder.cpp
+  Platform.cpp
+  Player.cpp
+  Spikes.cpp
+  main.cpp
+  Generating Code...
   SFML ProjectGra1.vcxproj -> D:\Documents\Code\GitRepository\PlatformGame\SFML ProjectGra1\x64\Debug\SFML ProjectGra1.exe

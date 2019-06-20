@@ -3,13 +3,14 @@
 using namespace sf;
 
 
-void Spikes::Effect(RectangleShape* collider, int num)
+void Spikes::Effect(Entity* collider, int num)
 {
 	if (num == 1) 
 	{
-		collider->move(0.0f, -3.0f);
+		collider->gravityForce = false;
+		collider->whileJump = false;
+		collider->speedValue = 10.f;
 		object.setFillColor(Color::Red);
-
 	}
 	
 	else object.setFillColor(Color::White);

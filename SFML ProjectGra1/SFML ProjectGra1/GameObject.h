@@ -2,6 +2,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
+#include "Entity.h"
 
 
 
@@ -19,15 +20,14 @@ protected:
 public:
 	void SetProperties(float x, float y, float width, float hight);
 	Vector2f GetPosition();
-	int Collision(RectangleShape collider);
-	int Trigger(RectangleShape collider);
+	int Collision(Sprite collider, float gravity, float width, float hight);
 	void Visible(bool n);
 	void Movable(bool n);
 	void Move(float x,float y);
 	bool MoveAlgorithm(float x, float y, float speed);
 	RectangleShape Ref();
 	void CameraMove(float x,float y);
-	virtual void Effect(RectangleShape* collider, int num);
+	virtual void Effect(Entity* collider, int num);
 
 	GameObject(float x, float y, float width, float hight);
 	virtual ~GameObject();

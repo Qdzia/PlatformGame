@@ -10,8 +10,6 @@ public:
 	virtual ~Enemy();
 	RectangleShape hpBar;
 	bool shotRand = false;
-	Texture enemyTex;
-	Sprite enemy;
 	void move();
 	//void move(float x, Player & p, Enemy &e);
 	void jump(float x);

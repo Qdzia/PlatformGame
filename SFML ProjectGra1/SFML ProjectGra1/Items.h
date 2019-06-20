@@ -5,7 +5,7 @@ class Items :
 {
 public:
 	//void PickUp();
-	void Effect(RectangleShape* collider, int num);
+	void Effect(Entity* collider, int num);
 	Items(float x, float y, float width, float hight);
 	~Items();
 };

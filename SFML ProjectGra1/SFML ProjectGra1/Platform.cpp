@@ -2,10 +2,18 @@
 
 
 
-void Platform::Effect(RectangleShape * collider, int num)
+void Platform::Effect(Entity* collider, int num)
 {
-	if (num == 1) collider->move(0.0f, -3.0f);
-
+	if (num == 1) 
+	{
+		collider->gravityForce = false;
+		collider->whileJump = false;
+		collider->speedValue = 10.f;
+				
+	}
+	else if(num == 2) collider->speedValue = -1.f;
+	else if (num == 3) collider->camD = false;
+	else if (num == 4) collider->camA = false;
 	
 }
 

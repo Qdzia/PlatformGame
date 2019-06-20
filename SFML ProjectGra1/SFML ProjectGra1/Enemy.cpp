@@ -71,11 +71,11 @@ void Enemy::shot()
 
 void Enemy::setAtributes()
 {
-	if (!enemyTex.loadFromFile("Textures/enemy.png"))
+	if (!Tex.loadFromFile("Textures/enemy.png"))
 		throw "Could not load cat.png";
-	enemy.setTexture(enemyTex);
-	enemy.setScale(Vector2f(0.05f, 0.05f));
-	enemy.setPosition(Vector2f(500, 500));
+	sprite.setTexture(Tex);
+	sprite.setScale(Vector2f(0.05f, 0.05f));
+	sprite.setPosition(Vector2f(500, 500));
 	hpBar.setFillColor(Color::Red);
 	
 }

@@ -2,14 +2,13 @@
 
 
 
-void Ladder::Effect(RectangleShape* collider, int num)
+void Ladder::Effect(Entity* collider, int num)
 {
 
 
 	if (num == 3 && Keyboard::isKeyPressed(Keyboard::W))
 	{
-		
-		collider->move(0.0f, -4.5f);
+		collider->sprite.move(0.0f, -5.0f);
 	}
 }
 
