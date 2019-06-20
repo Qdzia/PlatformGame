@@ -1,8 +1,4 @@
-﻿  Bullet.cpp
-  DeltaTime.cpp
-  Enemy.cpp
-  Entity.cpp
-  Game.cpp
+﻿  Game.cpp
   GameObject.cpp
   Items.cpp
   Ladder.cpp

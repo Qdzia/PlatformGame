@@ -13,6 +13,8 @@ Player::Player(float x,float y)
 
 	width = sprite.getTexture()->getSize().x * sprite.getScale().x;
 	hight = sprite.getTexture()->getSize().y * sprite.getScale().y;
+
+	hp = 10;
 }
 
 
@@ -20,21 +22,6 @@ Player::~Player()
 {
 }
 
-void Player::move()
-{
-}
-
-//void Player::move(float x, Player & p, Enemy &e)
-//{
-//	//Player
-//	
-//	if (Keyboard::isKeyPressed(Keyboard::A))
-//		player.move(-10.f*x, 0.f);
-//	else if (Keyboard::isKeyPressed(Keyboard::D))
-//		player.move(10.f*x, 0.f);
-//	
-//}
-/////////////////
 
 void Player::shot()
 {
@@ -104,16 +91,11 @@ void Player::checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &
 	}
 }
 
-void Player::ifJump(DeltaTime & y)
+void Player::ifJump()
 {
-
 	if (whileJump)
 	{
-		if (!gravityForce)
-		{
-			whileJump = false;
-			 
-		}
+		if (!gravityForce) whileJump = false;
 		else 
 		{
 			speedValue -= gravityAcceleration;
@@ -121,33 +103,13 @@ void Player::ifJump(DeltaTime & y)
 
 			if (speedValue > 10.f) speedValue = 10.f;
 			if (speedValue < -10.f) speedValue = -10.f;
-
 		}
-		
-
-	}else if(gravityForce) sprite.move(0.f, 2.f);
-
+	
+	}
+	else if (gravityForce) sprite.move(0.f, speedValue*0.5f);
+	
 	gravityForce = true;
 
-
-	//if (gravityForce)sprite.move(0.f, abs(speedValue));
-
-	//if (whileJump)
-	//{
-	//
-	//	speedValue -= gravityAcceleration;
-	//	sprite.move(0, -speedValue);
-
-	//	if (gravityForce) //bloakada na 1000 losowy limit
-	//	{
-	//		//sprite.setPosition(sprite.getPosition().x, 450);
-	//		whileJump = false;
-	//		//accelerationValue = 0;
-	//		//speedValue = 0;
-
-	//	}
-
-	//}
 }
 
 /*#include "Player.h"

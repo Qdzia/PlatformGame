@@ -33,20 +33,6 @@ void GameObject::Effect(Entity* collider, int num)
 
 }
 
-void GameObject::SetProperties(float x, float y,float width,float hight)
-{
-	// Tak tworzysz ka¿dy objekt
-
-	object.setSize(Vector2f(width, hight));
-	object.setPosition(Vector2f(x, y));
-	
-}
-
-Vector2f GameObject::GetPosition()
-{
-	return object.getPosition();
-}
-
 int GameObject::Collision(Sprite collider, float gravity, float width,float hight)
 {
 	//colizja od do³u -- 2, colizja od góry -- 1, jakakolwiek colizja -- 3, brak collizji 0, ta 4 to wartoœæ grawitacji
@@ -58,10 +44,11 @@ int GameObject::Collision(Sprite collider, float gravity, float width,float high
 		bool hLeft = collider.getPosition().x + width - gravity < object.getPosition().x;
 		bool hRight = collider.getPosition().x + gravity > object.getPosition().x + object.getSize().x;
 
-		if (vUp && n) return 1;
-		if (vDown && n) return 2;
 		if (hLeft && n) return 3;
 		if (hRight && n) return 4;
+		if (vUp && n) return 1;
+		if (vDown && n) return 2;
+		
 		if (n) return 5;
 
 		return 0;
@@ -78,19 +65,7 @@ int GameObject::Collision(Sprite collider, float gravity, float width,float high
 
 }
 
-void GameObject::Visible(bool n)
-{
-	//s³ó¿y do tworzenia niewidzialnych obiektów 
 
-	if (n) object.setFillColor(Color::White);
-		else object.setFillColor(Color::Transparent);
-}
-
-void GameObject::Movable(bool n)
-{
-	// okreœla czy mo¿na przesuwaæ obiekt czy jest statyczny
-	isMovable = n;
-}
 
 void GameObject::Move(float x, float y)
 {

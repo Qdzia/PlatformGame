@@ -15,8 +15,7 @@ void Game::Run()
 	RenderWindow window(VideoMode(800, 600), "Tutorials", Style::Default);
 	window.setFramerateLimit(60);
 
-	DeltaTime d1;
-	Player p1(0.f,50.f);
+	Player p1(100.f,50.f);
 	
 
 	
@@ -58,7 +57,7 @@ void Game::Run()
 		CameraUpdate(&p1);
 		
 
-		p1.ifJump(d1);
+		p1.ifJump();
 		
 		//Draw
 		window.clear(Color::Green);

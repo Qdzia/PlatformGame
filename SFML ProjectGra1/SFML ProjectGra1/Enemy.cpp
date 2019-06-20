@@ -2,8 +2,14 @@
 
 
 
-Enemy::Enemy()
+Enemy::Enemy(float x, float y)
 {
+	if (!Tex.loadFromFile("Textures/enemy.png"))
+		throw "Could not load cat.png";
+	sprite.setTexture(Tex);
+	sprite.setScale(Vector2f(0.05f, 0.05f));
+	sprite.setPosition(Vector2f(x, y));
+	hpBar.setFillColor(Color::Red);
 }
 
 
@@ -27,9 +33,7 @@ void Enemy::move()
 {
 }
 
-void Enemy::jump(float x)
-{
-}
+
 
 void Enemy::shot()
 {
@@ -69,15 +73,5 @@ void Enemy::shot()
 //
 //}
 
-void Enemy::setAtributes()
-{
-	if (!Tex.loadFromFile("Textures/enemy.png"))
-		throw "Could not load cat.png";
-	sprite.setTexture(Tex);
-	sprite.setScale(Vector2f(0.05f, 0.05f));
-	sprite.setPosition(Vector2f(500, 500));
-	hpBar.setFillColor(Color::Red);
-	
-}
 
 
