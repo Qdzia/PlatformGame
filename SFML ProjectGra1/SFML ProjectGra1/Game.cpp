@@ -4,8 +4,6 @@
 using namespace sf;
 using namespace std;
 
-
-// TU jest moje pole do tesów korzystaj z pozosta³ych klas tam masz wszystko ³adnie opisane za playera u¿ywam RectangleShape
 Game::Game()
 {
 	
@@ -18,8 +16,7 @@ void Game::Run()
 
 	Player p1(250.f,50.f);
 	
-	vector<CircleShape> projectiles;
-	vector<CircleShape> enemyprojectiles;
+	
 	Bullet b1;
 
 	
@@ -31,33 +28,41 @@ void Game::Run()
 		Event event;
 
 		Collisions(&p1);
+		for (int i = 0; i < NumOfEnemy; i++) p1.checkCollison(projectiles, *Enemys[0], p1, enemyprojectiles);
 
 		while (window.pollEvent(event))
 		{
-			if (event.type == Event::Closed)
-				window.close();
+			if (event.type == Event::Closed) window.close();
 
-			if (Event::KeyPressed && event.key.code == Keyboard::Escape)
-				window.close();
-			
+			if (Event::KeyPressed && event.key.code == Keyboard::Escape) window.close();
+
 			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space && p1.gravityForce == false)
-			{		
+			{
 				p1.whileJump = true;
 				p1.gravityForce = true;
-				
 			}
- 
+
 		}
 
-		
+
 		CameraUpdate(&p1);
 
-
+		p1.shot(b1, p1, window, projectiles, *Enemys[0], enemyprojectiles);
 		p1.ifJump();
-		
-		//Draw
+
+		//Background
 		window.clear(Color::Green);
 
+
+		for (size_t i = 0; i < projectiles.size(); i++)
+		{
+			window.draw(projectiles[i]);
+		}
+		for (size_t i = 0; i < enemyprojectiles.size(); i++)
+		{
+			window.draw(enemyprojectiles[i]);
+		}
+	
 		//Draw everything
 
 		for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
@@ -88,6 +93,11 @@ void Game::CameraUpdate(Player* p1)
 	for (int i = 0; i < NumOfObj; i++) { Objects[i]->CameraMove(camX, camY); }
 	for (int i = 0; i < NumOfEnemy; i++) { Enemys[i]->CameraMove(camX, camY); }
 	
+	for (size_t i = 0; i < projectiles.size(); i++) projectiles[i].move(camX, camY);
+	
+		
+	
+
 
 	camX = 0.f;
 	camY = 0.f;
@@ -101,12 +111,10 @@ void Game::Collisions(Player* collider)
 	
 	for (int i = 0; i < NumOfObj; i++)
 	{
-		
 		n = Objects[i]->Collision(collider->sprite, collider->speedValue, collider->width,collider->hight);
-		//if (n == 1)std::cout << n <<"  "<<i<< endl;
 		Objects[i]->Effect(collider, n);
 	}
-	
+
 }
 
 Game::~Game()
@@ -146,15 +154,7 @@ Game::~Game()
 //	vector<CircleShape> enemyprojectiles;
 //	p1.setAtributes();
 //	e1.setAtributes();
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 //	while (window.isOpen())
 //	{
 //		d1.getDeltaTime();

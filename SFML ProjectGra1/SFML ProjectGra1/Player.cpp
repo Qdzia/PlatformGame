@@ -1,7 +1,5 @@
 #include "Player.h"
 
-
-
 Player::Player(float x,float y)
 {
 	if (!Tex.loadFromFile("Textures/wojownik.png"))
@@ -17,51 +15,49 @@ Player::Player(float x,float y)
 	hp = 10;
 }
 
-
 Player::~Player()
 {
 }
 
 
-void Player::shot()
-{
-}
-////////////////////////
 
-//void Player::shot(Bullet &b1,Player &p,RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)
-//{
-//	b1.playerCenter = Vector2f(p.player.getPosition().x + p.player.getGlobalBounds().width, p.player.getPosition().y + p.player.getGlobalBounds().height/2);
-//
-//
-//	//PROJECTILES
-//
-//
-//	if (b1.ShootTimer < 80)
-//		b1.ShootTimer++;
-//
-//	if (Mouse::isButtonPressed(Mouse::Left) && b1.ShootTimer >= 80) //Shoot
-//	{
-//		b1.projectile.setPosition(b1.playerCenter);
-//		projectiles.push_back(CircleShape(b1.projectile));
-//
-//		b1.ShootTimer = 0;
-//	}
-//
-//	for (size_t i = 0; i < projectiles.size(); i++)
-//	{
-//		projectiles[i].move(1.f, 0.f);
-//
-//		if (projectiles[i].getPosition().x >= w.getSize().x)
-//			projectiles.erase(projectiles.begin() + i);
-//
-//	}
-//	
-//	}
+
+
+void Player::shot(Bullet &b1,Player &p,RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)
+{
+	b1.playerCenter = Vector2f(p.sprite.getPosition().x + p.width/2, p.sprite.getPosition().y + p.hight/2);
+
+	
+	//PROJECTILES
+
+
+	if (b1.ShootTimer < 80)
+		b1.ShootTimer++;
+
+	if (Mouse::isButtonPressed(Mouse::Left) && b1.ShootTimer >= 80) //Shoot
+	{
+		
+		b1.projectile.setPosition(b1.playerCenter);
+		projectiles.push_back(CircleShape(b1.projectile));
+
+		b1.ShootTimer = 0;
+	}
+
+	for (size_t i = 0; i < projectiles.size(); i++)
+	{
+		projectiles[i].move(9.f, 0.f);
+
+		if (projectiles[i].getPosition().x >= w.getSize().x)
+			projectiles.erase(projectiles.begin() + i);
+
+	}
+	
+	}
 	
 
 void Player::checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &p, vector<CircleShape>& enemyprojectiles)
 {
-	for (size_t i = 0; i < projectiles.size(); i++)
+	/*for (size_t i = 0; i < projectiles.size(); i++)
 	{
 		if (projectiles[i].getGlobalBounds().intersects(e1.sprite.getGlobalBounds()))
 		{
@@ -72,14 +68,14 @@ void Player::checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &
 			break; ///ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
 		}
 
-	}
+	}*/
 	if (p.sprite.getGlobalBounds().intersects(e1.sprite.getGlobalBounds()))
 	{
 		cout << "Zdechles!";
 		hp = 0;
 	}
 
-	for (size_t i = 0; i < enemyprojectiles.size(); i++)
+	/*for (size_t i = 0; i < enemyprojectiles.size(); i++)
 	{
 		if (enemyprojectiles[i].getGlobalBounds().intersects(p.sprite.getGlobalBounds()))
 		{
@@ -88,7 +84,7 @@ void Player::checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &
 			cout << p.hp << endl;
 			break; ///ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
 		}
-	}
+	}*/
 }
 
 void Player::ifJump()
@@ -111,8 +107,6 @@ void Player::ifJump()
 	gravityForce = true;
 
 }
-
-
 
 
 

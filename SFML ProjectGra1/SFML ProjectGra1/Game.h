@@ -16,6 +16,10 @@ class Game
 	int NumOfEnemy = 1;
 	float camX =0.0f, camY=0.0f;
 
+	vector<CircleShape> projectiles;
+	vector<CircleShape> enemyprojectiles;
+
+
 public:
 	GameObject* Objects[5];
 	Enemy* Enemys[1];
