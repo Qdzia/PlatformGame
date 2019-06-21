@@ -14,7 +14,7 @@ class Player :
 public:
 	Texture Tex;
 	Sprite sprite;
-	RectangleShape hpBar;
+	
 
 	//////////////////////////////////////
 	Player(float x, float y);

@@ -18,6 +18,7 @@ public:
 	friend class Enemy;
 	
 	int hp;
+	RectangleShape hpBar;
 	
 	float width;
 	float hight;
@@ -36,6 +37,7 @@ public:
 
 	Entity();
 	virtual ~Entity();
+	void hpBarMove();
 
 	//virtual void move(float x, Player & p, Enemy &e)=0;
 

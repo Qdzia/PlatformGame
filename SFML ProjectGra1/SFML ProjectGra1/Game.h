@@ -20,6 +20,7 @@ class Game
 	vector<CircleShape> enemyprojectiles;
 
 
+
 public:
 	GameObject* Objects[5];
 	Enemy* Enemys[1];
@@ -28,6 +29,7 @@ public:
 	void Initialize();
 	void CameraUpdate(Player* collider);
 	void Collisions(Player* collider);
+	void Draw(RenderWindow & w,Player & p1);
 
 	Game();
 	virtual ~Game();

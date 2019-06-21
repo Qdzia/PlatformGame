@@ -13,30 +13,25 @@ Player::Player(float x,float y)
 	hight = sprite.getTexture()->getSize().y * sprite.getScale().y;
 
 	hp = 10;
+	hpBar.setPosition(x + 10, y - 10);
+	hpBar.setSize(Vector2f(hp * 5.f, 5.f));
 }
 
 Player::~Player()
 {
 }
 
-
-
-
-
 void Player::shot(Bullet &b1,Player &p,RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)
 {
 	b1.playerCenter = Vector2f(p.sprite.getPosition().x + p.width/2, p.sprite.getPosition().y + p.hight/2);
 
-	
 	//PROJECTILES
-
 
 	if (b1.ShootTimer < 80)
 		b1.ShootTimer++;
 
 	if (Mouse::isButtonPressed(Mouse::Left) && b1.ShootTimer >= 80) //Shoot
-	{
-		
+	{	
 		b1.projectile.setPosition(b1.playerCenter);
 		projectiles.push_back(CircleShape(b1.projectile));
 
@@ -49,42 +44,41 @@ void Player::shot(Bullet &b1,Player &p,RenderWindow &w, vector<CircleShape> &pro
 
 		if (projectiles[i].getPosition().x >= w.getSize().x)
 			projectiles.erase(projectiles.begin() + i);
-
 	}
 	
 	}
 	
-
 void Player::checkCollison(vector<CircleShape> &projectiles, Enemy &e1, Player &p, vector<CircleShape>& enemyprojectiles)
 {
-	/*for (size_t i = 0; i < projectiles.size(); i++)
+	for (size_t i = 0; i < projectiles.size(); i++)
 	{
 		if (projectiles[i].getGlobalBounds().intersects(e1.sprite.getGlobalBounds()))
 		{
 			projectiles.erase(projectiles.begin() + i);
 			e1.hp--;
-			cout << e1.hp;
+			cout << e1.hp<<endl;
 			
-			break; ///ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
+			break; //ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
 		}
 
-	}*/
+	}
 	if (p.sprite.getGlobalBounds().intersects(e1.sprite.getGlobalBounds()))
 	{
 		cout << "Zdechles!";
 		hp = 0;
 	}
 
-	/*for (size_t i = 0; i < enemyprojectiles.size(); i++)
+	for (size_t i = 0; i < enemyprojectiles.size(); i++)
 	{
 		if (enemyprojectiles[i].getGlobalBounds().intersects(p.sprite.getGlobalBounds()))
 		{
 			enemyprojectiles.erase(enemyprojectiles.begin() + i);
 			p.hp--;
 			cout << p.hp << endl;
-			break; ///ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
+			break; //ten break jest po to, ze dla jakiegos tam strzalu ktory by juz zniknal sprawdzala by dalej przeciwnika, wiec trzeba breakowac to
 		}
-	}*/
+	}
+
 }
 
 void Player::ifJump()

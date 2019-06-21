@@ -15,21 +15,18 @@ void Game::Run()
 	window.setFramerateLimit(60);
 
 	Player p1(250.f,50.f);
-	
-	
 	Bullet b1;
+	Event event;
 
-	
-
-	this->Initialize();
+	Initialize();
 
 	while (window.isOpen())
 	{
-		Event event;
-
+		//Kolizje
 		Collisions(&p1);
 		for (int i = 0; i < NumOfEnemy; i++) p1.checkCollison(projectiles, *Enemys[0], p1, enemyprojectiles);
 
+		//Event
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed) window.close();
@@ -44,32 +41,21 @@ void Game::Run()
 
 		}
 
-
+		//Kamera + Os x
 		CameraUpdate(&p1);
 
+		//Strzelanie
 		p1.shot(b1, p1, window, projectiles, *Enemys[0], enemyprojectiles);
+		for (int i = 0; i < NumOfEnemy; i++) Enemys[i]->shot(b1, p1, window, projectiles, *Enemys[0], enemyprojectiles);
+		
+		//Skok
 		p1.ifJump();
 
 		//Background
 		window.clear(Color::Green);
 
-
-		for (size_t i = 0; i < projectiles.size(); i++)
-		{
-			window.draw(projectiles[i]);
-		}
-		for (size_t i = 0; i < enemyprojectiles.size(); i++)
-		{
-			window.draw(enemyprojectiles[i]);
-		}
-	
 		//Draw everything
-
-		for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
-		for (int i = 0; i < NumOfEnemy; i++) window.draw(Enemys[i]->Ref());
-
-		window.draw(p1.sprite);
-		window.display();
+		Draw(window,p1);	
 	}
 
 }
@@ -94,11 +80,8 @@ void Game::CameraUpdate(Player* p1)
 	for (int i = 0; i < NumOfEnemy; i++) { Enemys[i]->CameraMove(camX, camY); }
 	
 	for (size_t i = 0; i < projectiles.size(); i++) projectiles[i].move(camX, camY);
+	for (size_t i = 0; i < enemyprojectiles.size(); i++) enemyprojectiles[i].move(camX, camY);
 	
-		
-	
-
-
 	camX = 0.f;
 	camY = 0.f;
 	p1->camD = true;
@@ -117,10 +100,29 @@ void Game::Collisions(Player* collider)
 
 }
 
+void Game::Draw(RenderWindow & window, Player & p1)
+{
+	p1.hpBar.setPosition(p1.sprite.getPosition().x, p1.sprite.getPosition().y - 10);
+	for (int i = 0; i < NumOfEnemy; i++) Enemys[i]->hpBarMove();
+
+	for (size_t i = 0; i < projectiles.size(); i++) window.draw(projectiles[i]);
+	for (size_t i = 0; i < enemyprojectiles.size(); i++) window.draw(enemyprojectiles[i]);
+	
+	for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
+	for (int i = 0; i < NumOfEnemy; i++) window.draw(Enemys[i]->Ref());
+	
+	window.draw(p1.sprite);
+	window.draw(p1.hpBar);
+	window.draw(Enemys[0]->hpBar);
+
+	window.display();
+}
+
 Game::~Game()
 {
 
 }
+
 //#pragma once
 //#include <SFML/Graphics.hpp>
 //#include <SFML/Window.hpp>
