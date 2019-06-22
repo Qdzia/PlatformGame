@@ -12,7 +12,6 @@ public:
 	float multiplier = 60.f;
 	DeltaTime();
 	virtual ~DeltaTime();
-    void getDeltaTime();
+	void getDeltaTime();
 	float dtxmulti();
 };
-

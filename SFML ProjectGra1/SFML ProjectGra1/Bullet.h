@@ -1,6 +1,5 @@
 #pragma once
-#include "Player.h"
-
+#include "Entity.h"
 
 using namespace sf;
 
@@ -8,7 +7,7 @@ using namespace sf;
 class Bullet
 {
 public:
-	
+
 	CircleShape projectile;
 	Vector2f playerCenter;
 	Vector2f enemyCenter;
@@ -16,6 +15,5 @@ public:
 	int ShootTimerenemy = 0;
 	Bullet();
 	~Bullet();
-	
-};
 
+};

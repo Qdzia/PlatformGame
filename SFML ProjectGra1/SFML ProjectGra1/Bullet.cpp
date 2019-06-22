@@ -2,7 +2,7 @@
 
 
 
-Bullet::Bullet() 
+Bullet::Bullet()
 {
 	projectile.setFillColor(Color::Red);
 	projectile.setRadius(5.f);
@@ -12,5 +12,3 @@ Bullet::Bullet()
 Bullet::~Bullet()
 {
 }
-
-
