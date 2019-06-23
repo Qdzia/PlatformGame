@@ -24,12 +24,11 @@ public:
 
 
 	int Collision(Sprite collider, float gravity, float width, float hight);
-	void Move(float x,float y);
+	void Move(float x, float y);
 	Sprite Ref();
 	void CameraMove(float x, float y);
 	virtual void Effect(Entity* collider, int num);
 
 	bool MoveAlgorithm(float x, float y, float speed);
-		
-};
 
+};

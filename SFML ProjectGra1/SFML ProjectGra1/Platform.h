@@ -11,6 +11,3 @@ public:
 	Platform(float x, float y);
 	~Platform();
 };
-
-
-

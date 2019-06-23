@@ -5,16 +5,16 @@ using namespace sf;
 
 void Spikes::Effect(Entity* collider, int num)
 {
-	if (num == 1) 
+	if (num == 1)
 	{
 		collider->gravityForce = false;
 		collider->whileJump = false;
 		collider->speedValue = 10.f;
-		
-	}
-	
 
-	//narazie tylko siê podœwietla mo¿na dodaæ ze zabija albo hp tracisz czy coœ
+	}
+
+
+	//narazie tylko si? pod?wietla mo?na doda? ze zabija albo hp tracisz czy co?
 }
 
 Spikes::Spikes(float x, float y) :GameObject(x, y)

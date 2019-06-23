@@ -4,13 +4,7 @@
 
 void Ladder::Effect(Entity* collider, int num)
 {
-
-
-	if (num > 0 && Keyboard::isKeyPressed(Keyboard::W))
-	{
-		void moveSprite(float x, float y);
-		
-	}
+	if (num > 0 && Keyboard::isKeyPressed(Keyboard::W)) collider->ladder = true;
 }
 
 Ladder::Ladder(float x, float y) :GameObject(x, y)
@@ -22,7 +16,7 @@ Ladder::Ladder(float x, float y) :GameObject(x, y)
 
 	width = sprite.getTexture()->getSize().x * sprite.getScale().x;
 	hight = sprite.getTexture()->getSize().y * sprite.getScale().y;
-	
+
 }
 
 

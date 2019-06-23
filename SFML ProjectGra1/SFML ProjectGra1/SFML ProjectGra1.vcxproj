@@ -140,8 +140,10 @@
     <ClCompile Include="Items.cpp" />
     <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ShortPlatform.cpp" />
     <ClCompile Include="Spikes.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,8 +155,10 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Items.h" />
     <ClInclude Include="Ladder.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ShortPlatform.h" />
     <ClInclude Include="Spikes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

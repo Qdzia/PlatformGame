@@ -12,12 +12,11 @@ public:
 	virtual ~Enemy();
 	bool shotRand = false;
 	//void move(float x, Player & p, Enemy &e);
-	
-	
+
+
 	//void shot(Bullet &b1, Player &p, RenderWindow &w, vector<CircleShape> &projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
 	void shot(Bullet & b1, Player & p, RenderWindow & w, vector<CircleShape>& projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles);
 
 	Sprite Ref();
 	void CameraMove(float x, float y);
 };
-
