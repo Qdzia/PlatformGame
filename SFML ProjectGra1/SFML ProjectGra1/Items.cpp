@@ -4,7 +4,7 @@
 
 void Items::Effect(Entity* collider, int num)
 {
-	if (type == 1 && num > 0) collider->hp++;
+	if (type == 1 && num > 0) collider->hp+= 5;
 	else if (type == 2 && num > 0) collider->score += 100;
 
 	if (num > 0) sprite.setPosition(-100.f, -100.f);

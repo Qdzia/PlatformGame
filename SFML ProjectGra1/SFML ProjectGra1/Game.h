@@ -16,13 +16,13 @@ class Game
 	float gravityForce = 3.0f;
 	int NumOfObj = 23;
 	int NumOfEnemy = 1;
-	int NumOfItems = 2;
+	int NumOfItems = 5;
 	float camX = 0.0f, camY = 0.0f;
 
 public:
 	GameObject* Objects[23];
 	Enemy* Enemys[1];
-	Items* itemsVec[2];
+	Items* itemsVec[5];
 
 	vector<CircleShape> projectiles;
 	vector<CircleShape> enemyprojectiles;

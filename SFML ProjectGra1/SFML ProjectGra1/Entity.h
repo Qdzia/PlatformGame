@@ -38,6 +38,7 @@ public:
 	Texture Tex;
 	Sprite sprite;
 
+
 	Entity();
 	virtual ~Entity();
 	void hpBarMove();

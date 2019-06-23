@@ -8,7 +8,8 @@ class Menu
 private:
 	int selectedItemIndex;
 	Font font;
-	Text menu[3];
+	Text menu[4];
+	
 public:
 	
 	Menu(float width, float height);
@@ -17,5 +18,6 @@ public:
 	void MoveUp();
 	void MoveDown();
 	int GetPressedItem() { return selectedItemIndex; }
+	void drawScore(RenderWindow &window, int score);
 };
 

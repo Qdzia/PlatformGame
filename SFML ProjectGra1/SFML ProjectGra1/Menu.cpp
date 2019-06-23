@@ -1,4 +1,7 @@
 #include "Menu.h"
+#include <string> 
+#include <sstream>
+
 
 
 
@@ -25,6 +28,13 @@ Menu::Menu(float width, float height)
 	menu[2].setFillColor(Color::White);
 	menu[2].setString("Exit");
 	menu[2].setPosition(Vector2f((width / 2)-50, height / (3+1)*3));
+
+	menu[3].setFont(font);
+	menu[3].setCharacterSize(35);
+	menu[3].setFillColor(Color::White);
+	menu[3].setString("Score : ");
+	menu[3].setPosition(Vector2f((width / 2) - 50, 40.f));
+
 
 	selectedItemIndex = 0;
 }
@@ -60,4 +70,14 @@ void Menu::MoveDown()
 		selectedItemIndex++;
 		menu[selectedItemIndex].setFillColor(Color::Red);
 	}
+}
+
+void Menu::drawScore(RenderWindow & window,int score)
+{
+	stringstream ss;
+	ss << score;
+	string str = "Score: " + ss.str();
+
+	menu[3].setString(str);
+	window.draw(menu[3]);
 }

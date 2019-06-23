@@ -30,6 +30,9 @@ void Game::Run()
 		Collisions(&p1);
 		for (int i = 0; i < NumOfEnemy; i++) p1.checkCollison(projectiles, *Enemys[0], p1, enemyprojectiles);
 
+		//HPBars
+		p1.hpBar.setSize(Vector2f(p1.hp * 5.f, 5.f));
+
 		//Event
 		while (window.pollEvent(event))
 		{
@@ -92,7 +95,7 @@ void Game::Run()
 			p1.ifJump();
 		}
 
-		std::cout << p1.score<< endl;
+		std::cout << p1.sprite.getPosition().x<<"     "<< p1.sprite.getPosition().y << endl;
 		
 		
 		
@@ -101,7 +104,11 @@ void Game::Run()
 		//Background
 		window.clear(Color::Green);
 		//Draw everything
-		if (isMenu == false) Draw(window, p1);
+		if (isMenu == false) 
+		{ 
+			Draw(window, p1); 
+			menu.drawScore(window,p1.score);
+		}
 		if (isMenu == true) menu.draw(window);
 
 		window.display();
@@ -136,9 +143,13 @@ void Game::Initialize()
 	Objects[22] = new Platform(4100.0f, 140.f);
 
 	Enemys[0] = new Enemy(1950.f, 230.f);
-	
-	itemsVec[0] = new Items(250.f, 750.f, 1);
-	itemsVec[1] = new Items(150.f, 750.f, 2);
+
+	itemsVec[0] = new Items(30.f, 750.f, 2);
+	itemsVec[1] = new Items(1200.f, 550.f, 2);
+	itemsVec[2] = new Items(2500.f, 750.f, 1);
+	itemsVec[3] = new Items(3200.f, 430.f, 2);
+	itemsVec[4] = new Items(4200.f, 85.f, 2);
+
 	
 }
 
@@ -155,6 +166,7 @@ void Game::CameraUpdate(Player* p1)
 
 	for (int i = 0; i < NumOfItems; i++) itemsVec[i]->CameraMove(camX, camY);
 		
+	p1->hpBar.setPosition(p1->sprite.getPosition().x, p1->sprite.getPosition().y - 10);
 
 	camX = 0.f;
 	camY = 0.f;
@@ -183,7 +195,7 @@ void Game::Collisions(Player* collider)
 void Game::Draw(RenderWindow & window, Player & p1)
 {
 	
-	p1.hpBar.setPosition(p1.sprite.getPosition().x, p1.sprite.getPosition().y - 10);
+	
 	for (int i = 0; i < NumOfEnemy; i++) Enemys[i]->hpBarMove();
 
 	for (size_t i = 0; i < projectiles.size(); i++) window.draw(projectiles[i]);

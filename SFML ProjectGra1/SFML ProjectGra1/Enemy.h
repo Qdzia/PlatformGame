@@ -10,7 +10,9 @@ class Enemy :
 public:
 	Enemy(float x, float y);
 	virtual ~Enemy();
-	bool shotRand = false;
+	int numOfShots = 0;
+	Vector2f enemyCenter;
+	bool alive = true;
 	//void move(float x, Player & p, Enemy &e);
 
 
