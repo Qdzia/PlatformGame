@@ -10,6 +10,7 @@ void Spikes::Effect(Entity* collider, int num)
 		collider->gravityForce = false;
 		collider->whileJump = false;
 		collider->speedValue = 10.f;
+		collider->hp = 0;
 
 	}
 

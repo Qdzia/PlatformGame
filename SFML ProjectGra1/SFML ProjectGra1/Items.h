@@ -4,8 +4,9 @@ class Items :
 	public GameObject
 {
 public:
-	//void PickUp();
+	int type = 0;//1- hp potion 2 - gem
 	void Effect(Entity* collider, int num);
-	Items(float x, float y, float width, float hight);
+
+	Items(float x, float y, int t);
 	~Items();
 };

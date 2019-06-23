@@ -14,6 +14,11 @@ Enemy::Enemy(float x, float y)
 
 	hpBar.setPosition(x + 10, y - 10);
 	hpBar.setSize(Vector2f(hp * 5.f, 5.f));
+
+	width = sprite.getTexture()->getSize().x * sprite.getScale().x;
+	hight = sprite.getTexture()->getSize().y * sprite.getScale().y;
+
+	enemyCenter = Vector2f(sprite.getPosition().x + width / 2, sprite.getPosition().y + hight / 2);
 }
 
 Enemy::~Enemy()
@@ -47,32 +52,45 @@ void Enemy::CameraMove(float x, float y)
 
 void Enemy::shot(Bullet & b1, Player & p, RenderWindow & w, vector<CircleShape>& projectiles, Enemy &e1, vector<CircleShape>& enemyprojectiles)
 {
-	if (b1.ShootTimerenemy < 200)
-		b1.ShootTimerenemy++;
-
-	b1.enemyCenter = Vector2f(e1.sprite.getPosition().x + e1.sprite.getGlobalBounds().width/2, e1.sprite.getPosition().y + e1.sprite.getGlobalBounds().height/2);
-
-	if (b1.ShootTimerenemy >= 200)
+	
+	if (hp < 1)
 	{
-		b1.projectile.setPosition(b1.enemyCenter);
-		enemyprojectiles.push_back(CircleShape(b1.projectile));
-
-		b1.ShootTimerenemy = 0;
+		sprite.setPosition(sprite.getPosition().x, -300.f);
 	}
 
-	for (size_t i = 0; i < enemyprojectiles.size(); i++)
+	if (alive) 
 	{
-		if (shotRand == false) enemyprojectiles[i].move(2.f, 0.f);
-		if (shotRand == true) enemyprojectiles[i].move(-2.f, 0.f);
+		b1.ShootTimerenemy++;
 
+		enemyCenter = Vector2f(sprite.getPosition().x + width / 2, sprite.getPosition().y + hight / 2);
 
-		if (enemyprojectiles[i].getPosition().x >= e1.sprite.getPosition().x + 300 + e1.width || enemyprojectiles[i].getPosition().x <= e1.sprite.getPosition().x - 300)
+		if (b1.ShootTimerenemy >= 160)
 		{
-			enemyprojectiles.erase(enemyprojectiles.begin() + i);
-			shotRand = !shotRand;
+			b1.projectile.setPosition(enemyCenter);
+			enemyprojectiles.push_back(CircleShape(b1.projectile));
+
+			if (enemyCenter.x < p.sprite.getPosition().x) enemyprojectiles[numOfShots].move(5.f, 0.f);
+			else enemyprojectiles[numOfShots].move(-5.f, 0.f);
+
+			b1.ShootTimerenemy = 0;
+			numOfShots++;
+		}
+
+		for (size_t i = 0; i < enemyprojectiles.size(); i++)
+		{
+
+			if (enemyprojectiles[i].getPosition().x > enemyCenter.x) enemyprojectiles[i].move(2.f, 0.f);
+			else enemyprojectiles[i].move(-2.f, 0.f);
+
+
+			if (enemyprojectiles[i].getPosition().x >= sprite.getPosition().x + 1000 || enemyprojectiles[i].getPosition().x <= sprite.getPosition().x - 1000)
+			{
+				enemyprojectiles.erase(enemyprojectiles.begin() + i);
+				numOfShots--;
+			}
+
 		}
 
 	}
-
 }
 

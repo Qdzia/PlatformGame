@@ -11,7 +11,7 @@ Game::Game()
 
 void Game::Run()
 {
-	RenderWindow window(VideoMode(1920, 1080), "Tutorials", Style::Default);
+	RenderWindow window(VideoMode(1920, 1080), "GamebyLukaszandPawel", Style::Default);
 	window.setFramerateLimit(60);
 
 	Player p1(250.f, 50.f);
@@ -19,6 +19,10 @@ void Game::Run()
 	Event event;
 	Menu menu(float(window.getSize().x), float(window.getSize().y));
 	bool isMenu = true;
+	bool isGame = false;
+	int licznik = 0;
+	
+	
 
 	Initialize();
 
@@ -27,6 +31,9 @@ void Game::Run()
 		//Kolizje
 		Collisions(&p1);
 		for (int i = 0; i < NumOfEnemy; i++) p1.checkCollison(projectiles, *Enemys[0], p1, enemyprojectiles);
+
+		//HPBars
+		p1.hpBar.setSize(Vector2f(p1.hp * 5.f, 5.f));
 
 		//Event
 		while (window.pollEvent(event))
@@ -76,7 +83,8 @@ void Game::Run()
 			}
 
 		}
-		if (isMenu == false)
+
+		if (isMenu == false && !isGame)
 		{
 			//Kamera + Os x
 			CameraUpdate(&p1);
@@ -88,19 +96,45 @@ void Game::Run()
 			//Skok
 			p1.ifJump();
 		}
+
+		std::cout << p1.sprite.getPosition().x<<"     "<< p1.sprite.getPosition().y << endl;
 		
+		if (isGame) licznik++;
+		if (licznik >= 200)
+		{
+			window.close();
+			Game game;
+			game.Run();
+		}
+			
+		
+		//Items(150.f, 750.f, 1)
 
 		//Background
 		window.clear(Color::Green);
 		//Draw everything
-		if (isMenu == false)
+		cout << p1.sprite.getPosition().x << endl;
+		cout << p1.sprite.getPosition().y << endl;
+		if (p1.hp <= 0)
 		{
-			Draw(window, p1);
+			menu.drawInfo(window);
+			isGame = true;
+			
 		}
+		if (p1.score == 700)
+		{
+			cout << "Wygrana";
+			menu.drawWin(window);
+			isGame = true;
 
-		
-		
+		}
+		if (isMenu == false) 
+		{ 
+			Draw(window, p1); 
+			menu.drawScore(window,p1.score);
+		}
 		if (isMenu == true) menu.draw(window);
+
 		window.display();
 	}
 
@@ -114,7 +148,7 @@ void Game::Initialize()
 	Objects[3] = new ShortPlatform(780, 680.f);
 	Objects[4] = new Spikes(1200.f, 950.f);
 	Objects[5] = new Platform(990.0f, 600.f);// to ustawimy na 990,680, narazie dalem wyzej zeby dalo sie wskakiwac, potem po drabinie bedziemy tu wchodzic
-	Objects[6] = new Ladder(1376.f, 450.f);
+	Objects[6] = new Ladder(1376.f, 450.f); 
 	Objects[7] = new ShortPlatform(1445.0f, 460.f);
 	Objects[8] = new ShortPlatform(1600.0f, 400.f);
 	Objects[9] = new ShortPlatform(1750.0f, 350.f);
@@ -133,6 +167,13 @@ void Game::Initialize()
 	Objects[22] = new Platform(4100.0f, 140.f);
 
 	Enemys[0] = new Enemy(1950.f, 230.f);
+
+	itemsVec[0] = new Items(30.f, 750.f, 2);
+	itemsVec[1] = new Items(1200.f, 550.f, 2);
+	itemsVec[2] = new Items(2500.f, 750.f, 1);
+	itemsVec[3] = new Items(3200.f, 430.f, 2);
+	itemsVec[4] = new Items(4200.f, 85.f, 2);
+
 	
 }
 
@@ -146,6 +187,10 @@ void Game::CameraUpdate(Player* p1)
 
 	for (size_t i = 0; i < projectiles.size(); i++) projectiles[i].move(camX, camY);
 	for (size_t i = 0; i < enemyprojectiles.size(); i++) enemyprojectiles[i].move(camX, camY);
+
+	for (int i = 0; i < NumOfItems; i++) itemsVec[i]->CameraMove(camX, camY);
+		
+	p1->hpBar.setPosition(p1->sprite.getPosition().x, p1->sprite.getPosition().y - 10);
 
 	camX = 0.f;
 	camY = 0.f;
@@ -163,11 +208,18 @@ void Game::Collisions(Player* collider)
 		Objects[i]->Effect(collider, n);
 	}
 
+	for (int i = 0; i < NumOfItems; i++) 
+	{
+		n = itemsVec[i]->Collision(collider->sprite, collider->speedValue, collider->width, collider->hight);
+		itemsVec[i]->Effect(collider, n);
+	}
+
 }
 
 void Game::Draw(RenderWindow & window, Player & p1)
 {
-	p1.hpBar.setPosition(p1.sprite.getPosition().x, p1.sprite.getPosition().y - 10);
+	
+	
 	for (int i = 0; i < NumOfEnemy; i++) Enemys[i]->hpBarMove();
 
 	for (size_t i = 0; i < projectiles.size(); i++) window.draw(projectiles[i]);
@@ -176,9 +228,12 @@ void Game::Draw(RenderWindow & window, Player & p1)
 	for (int i = 0; i < NumOfObj; i++) window.draw(Objects[i]->Ref());
 	for (int i = 0; i < NumOfEnemy; i++) window.draw(Enemys[i]->Ref());
 
+	for (int i = 0; i < NumOfItems; i++) window.draw(itemsVec[i]->Ref());
+
 	window.draw(p1.sprite);
 	window.draw(p1.hpBar);
-	window.draw(Enemys[0]->hpBar);
+
+	for (int i = 0; i < NumOfEnemy; i++) window.draw(Enemys[i]->hpBar);
 }
 
 Game::~Game()

@@ -47,16 +47,6 @@ int GameObject::Collision(Sprite collider, float gravity, float width, float hig
 	if (n) return 5;
 
 	return 0;
-
-	/*float width = collider.getTexture()->getSize().x * collider.getScale().x;
-	float hight = collider.getTexture()->getSize().y * collider.getScale().y;
-	if (n && collider.getPosition().y + gravity > object.getPosition().y + object.getSize().y)return 2;
-	else if (n && collider.getPosition().y + hight - object.getPosition().y < gravity) return 1;
-	else if (n) return 3;
-	else return 0;*/
-
-	//if (n && collider.getPosition().y + hight - object.getPosition().y < gravity) return 1;
-
 }
 
 

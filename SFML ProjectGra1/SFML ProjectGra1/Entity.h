@@ -29,11 +29,15 @@ public:
 	float speedValue = 10.f;
 	float accelerationValue = 0.f;
 
+	bool ladder = false;
+	int score = 0;
+
 	bool camA = true;
 	bool camD = true;
 
 	Texture Tex;
 	Sprite sprite;
+
 
 	Entity();
 	virtual ~Entity();
